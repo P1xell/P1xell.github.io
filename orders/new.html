@@ -1,0 +1,677 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>Новый проект</title>
+  <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="QZVQuiLjeZnl6g97yh94itAxtEt34w/2C9X+9ItpM1PigkU2P03kjdRcav60tBnQoF8E3jFBYZCTQXsFWd7THw==">
+  <link rel="shortcut icon" type="image/x-icon" href="https://telega.in/assets/favicon-e0b4fdfa52b20284e4a20c3a800cf86bbd711441a4dda659802d9b4e6a08c839.ico">
+  <meta name="yandex-verification" content="8638f7bc8e074fb0">
+  <meta name="description" content="Сервис для рекламы вашего бизнеса в Telegram каналах.">
+<meta property="og:site_name" content="Telega">
+<meta property="og:title" content="Новый проект">
+<meta property="twitter:title" content="Новый проект">
+<meta property="og:image" content="https://telega.in/assets/logo_with_back-cf11db46c1aa6c08dd6eefc4b1b9cf6890527acc2e1fa4bb437f9ce8ade020dd.png">
+<meta property="og:image:width" content="201">
+<meta property="og:image:height" content="109">
+<meta property="vk:image" content="https://telega.in/assets/logo_with_back-cf11db46c1aa6c08dd6eefc4b1b9cf6890527acc2e1fa4bb437f9ce8ade020dd.png">
+<meta property="twitter:image" content="https://telega.in/assets/logo_with_back-cf11db46c1aa6c08dd6eefc4b1b9cf6890527acc2e1fa4bb437f9ce8ade020dd.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:description" content="Сервис для рекламы вашего бизнеса в Telegram каналах.">
+<meta property="twitter:description" content="Сервис для рекламы вашего бизнеса в Telegram каналах.">
+
+  <link rel="stylesheet" media="all" href="/assets/application-1b329e3e24ff9d8eb5cb831d2d2e14dfae57e61b54c3495525dcdb20643bdf47.css" data-turbolinks-track="reload">
+  <link rel="stylesheet" media="screen" href="/assets/locales/ru-67fcb20f9ab8998a3ac9627129ed7017cad5c7987ba5578dc6f6a235577f6136.css">
+  <script src="/assets/application-16fa032e1e50715be77f44692f3ec32658b171a8f4dc9ca6adf9b802e01f41e3.js" data-turbolinks-track="reload"></script>
+  
+</head>
+
+<body class="pw-landing" style="overflow-y: scroll; margin-right: 0;">
+
+<div class="register-popup" style="display: none;">
+  <i class="close"></i>
+  <form id="registration_form" class="ajax-form" action="/users/sign_up" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;">
+      <h2>Регистрация</h2>
+      <p>Укажите вашу электронную почту, на&nbsp;этот адрес будет выслан ваш пароль.</p>
+      <input autofocus="autofocus" class="user_email" placeholder="Электронная почта" style="margin-bottom: 5px" type="text" name="user[email]">
+      <div class="error-wrapper user_email"></div>
+      <div class="rules_checkbox_wrapper">
+        <input name="user[register_news_subscription]" type="hidden" value="0"><input type="checkbox" value="1" checked="checked" name="user[register_news_subscription]" id="user_register_news_subscription">
+        <label for="user_register_news_subscription">Я хочу получать рассылку от Telega.in</label>
+      </div>
+
+      <input type="submit" name="commit" value="Отправить" style="margin-top: 15px" data-disable-with="Отправить">
+</form>
+  <form id="registration_signin_form" class="ajax-form" action="/users/sign_in" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;">
+      <h2>Вход в систему</h2>
+      <p>Электронынй адрес зарегестрирован в системе, введите пароль для входа.</p>
+      <input autofocus="autofocus" class="user_email" placeholder="Электронная почта" style="margin-bottom: 5px" type="text" name="user[email]">
+      <div class="error-wrapper user_email"></div>
+
+      <input class="user_password" placeholder="Пароль" style="margin-bottom: 5px" type="password" name="user[password]">
+      <div class="error-wrapper user_password"></div>
+
+      <input type="submit" name="commit" value="Вход" style="margin-top: 15px" data-disable-with="Вход">
+</form></div>
+<div class="register-overlay overlay" style="display: none;"></div>
+
+<div class="confirm-popup" id="cancel-order-confirm" style="display: none;">
+  <i class="close"></i>
+  <div class="confirm-content">
+    <h2>Отмена проекта</h2>
+    <p class="cancel-user">Вы хотите отменить проект на канале <span class='channel_name'></span>?</p>
+    <p class="cancel-webmaster" style="display: none">Вы хотите отказаться от выполнения проекта?</p>
+    <button type="button" class="confirm-btn">Хочу</button>
+    <button type="button" class="cancel-btn">Не хочу</button>
+  </div>
+</div>
+<div class="confirm-popup" id="autoreplace-order-confirm" style="display: none;">
+  <i class="close"></i>
+  <div class="confirm-content">
+    <h2>Ознакомьтесь с условиями автозамены!</h2>
+    <p class="cancel-user">Вы выбрали автозамену для каналов <span class="channel_names"></span>. В случае отмены выполнения заказа вебмастером, администрация телеги подберет вам другой канал с аналогичной етматикой и ценой.</p>
+    <p>Создать заказ с данными параметрами?</p>
+    <p>
+      <input id="not-show-popup-checkbox" value="1" autocomplete="off" type="checkbox">
+      <label for="not-show-popup-checkbox" class="long-label">Не показывать в дальнейшем это сообщение</label>
+    </p>
+    <button type="button" class="confirm-btn">Да, создать</button>
+    <button type="button" class="cancel-btn">Нет, я передумал</button>
+  </div>
+</div>
+
+<div class="confirm-popup" id="complete-order-confirm" style="display: none;">
+  <i class="close"></i>
+  <div class="confirm-content">
+    <h2>Подтверждение</h2>
+    <p>Вы разместили рекламный обзор в соответствии с рекламными требованиями и обязуетесь не удалять и не изменять рекламный пост в течение суток после размещения.</p>
+    <div class="input-wrapper-row">
+      <input id="post_link" name="post_link" placeholder="Ссылка на пост (https://t.me/channel/xxx)">
+    </div>
+    <div class="custom-comment">
+      <p>Комментарий</p>
+      <div class="input-wrapper">
+        <textarea id="correction_comment_id" rows="4"></textarea>
+      </div>
+    </div>
+    <button type="button" class="confirm-btn">Да</button>
+    <button type="button" class="cancel-btn">Нет</button>
+  </div>
+</div>
+<div class="confirm-popup" id="complete-order-approve-by-user" style="display: none;">
+  <i class="close"></i>
+  <div class="confirm-content">
+    <h2>Подтверждение</h2>
+    <p>Вы подтверждаете что владелец канала разместил ваше объявление?</p>
+    <input type="hidden" id="review_rating_id">
+    <p class="rating-title">Оцение результат</p>
+
+    <div class="stars-wrapper">
+      <div class="stars">
+        <span class="review-star" data-star="1"></span>
+        <span class="review-star" data-star="2"></span>
+        <span class="review-star" data-star="3"></span>
+        <span class="review-star" data-star="4"></span>
+        <span class="review-star" data-star="5"></span>
+      </div>
+    </div>
+    <div class="custom-comment">
+      <p>Оставить отзыв</p>
+      <div class="input-wrapper">
+        <textarea id="review_comment_id" rows="4"></textarea>
+      </div>
+    </div>
+    <button type="button" class="confirm-btn">Да</button>
+    <button type="button" class="cancel-btn">Нет</button>
+  </div>
+</div>
+<div class="confirm-popup" id="complete-order-disapprove-by-user" style="display: none;">
+  <i class="close"></i>
+  <div class="confirm-content">
+    <h2>Ошибка выполнения</h2>
+    <p>Пожалуйста опишите подробно, в чем проблема с размещенным постом</p>
+    <div class="input-wrapper">
+      <textarea id="description" rows="4"></textarea>
+    </div>
+    <button type="button" class="confirm-btn">Подтвердить</button>
+    <button type="button" class="cancel-btn">Закрыть</button>
+  </div>
+</div>
+<div class="confirm-popup" id="cancel-order-channel-comment" style="display: none;">
+  <i class="close"></i>
+  <div class="confirm-content">
+    <h2>Отмена проекта</h2>
+    <p>Вы хотите отказаться от выполнения проекта?</p>
+    <div class="input-wrapper">
+      <label id="label-for-cancel-comment" for="cancel_order_comment">Причина:</label>
+      <select id="cancel_order_comment" name="confirm_webmaster">
+        <option value="">Выберите причину</option>
+        <option value="time">Нет свободного места. Предложить свою дату.</option>
+        <option value="theme">Не тематическая реклама</option>
+        <option value="text">Сомнительное содержание поста</option>
+        <option value="other">Другое</option>
+      </select>
+      <textarea id="other_cancel_comment" rows="4" style="display: none"></textarea>
+      <div style="display: none" class="cancel_free_time">
+        <input id="free_time_from" class="hasDatePicker" type="text" placeholder="Свободная дата с">
+        <input id="free_time_to" class="hasDatePicker" type="text" placeholder="Свободная дата по">
+      </div>
+    </div>
+    <button type="button" class="confirm-btn">Подтвердить</button>
+    <button type="button" class="cancel-btn">Назад</button>
+  </div>
+</div>
+<div class="confirm-popup" id="delete-user-profile" style="display: none;" data-href="/profile/delete">
+  <i class="close"></i>
+  <div class="confirm-content">
+    <h2>Подтверждение</h2>
+    <p>Вы действительно хотите удалить ваш аккаунт? Восстановить информацию будет невозможно.</p>
+    <button type="button" class="confirm-btn">Да</button>
+    <button type="button" class="cancel-btn">Нет</button>
+  </div>
+</div>
+<div class="confirm-popup" id="deactivate-channel-confirm" style="display: none;">
+  <i class="close"></i>
+  <div class="confirm-content">
+    <h2>Подтверждение</h2>
+    <p>Вы точно хотите деактивировать канал? Вы не сможете получать заявки на размещение рекламы</p>
+    <button type="button" class="confirm-btn">Да</button>
+    <button type="button" class="cancel-btn">Нет</button>
+  </div>
+</div>
+<div class="confirm-popup" id="order-without-image-confirm" style="display: none;">
+  <i class="close"></i>
+  <div class="confirm-content">
+    <h2>Подтверждение</h2>
+    <p>Вы отправляете заказ в работу без прикрепленного изображения. Вы точно ничего не забыли?</p>
+    <button type="button" class="confirm-btn">Да</button>
+    <button type="button" class="cancel-btn">Нет</button>
+  </div>
+</div>
+
+<div class="popup-blur">
+  <div class="main-bg">
+    <div class="top-decor"></div>
+    <header>
+  <script>
+//<![CDATA[
+window.gon={};gon.locale="ru";gon.start_price=0;gon.end_price=1000000000;gon.start_users=0;gon.end_users=1000000000;gon.channel_theme="";gon.search_text="";gon.sort_field=null;gon.sort_dir=null;
+//]]>
+</script>
+  <div class="container">
+    <div class="grid">
+      <div class="width-2-5 flex-center">
+        <nav class="menu">
+              <a class="item" href="new.html">Каталог</a>
+              <i class="divider"></i>
+              <a class="item" data-turbolinks="false" href="/#features">Преимущества</a>
+              <i class="divider"></i>
+
+                  <a class="item" data-turbolinks="false" href="/package">Пакетное размещение</a>
+                  <i class="divider"></i>
+
+                  <span class="hidden-large">
+                      <a class="item" href="/feedback">Контакты</a>
+                      <i class="divider"></i>
+                      <a class="item" href="/faq">FAQ</a>
+                      <i class="divider"></i>
+                  </span>
+
+              <a class="item" data-turbolinks="false" href="/crypt">Crypt</a>
+        </nav>
+      </div>
+      <div class="width-1-5 flex-center hidden-small">
+        <div class="logo">
+          <a href="/">
+            <img width="201" alt="Telega" src="/assets/telega-0515180d3af80eac77836d3279caca6f143535c1058d6c9a375277122817af9f.png">
+          </a>
+        </div>
+      </div>
+      <div class="width-2-5 flex-right">
+          <nav class="menu hidden-small" style="min-width: 170px">
+            <a class="item" href="/feedback">Контакты</a>
+            <i class="divider"></i>
+            <a class="item" href="/faq">FAQ</a>
+            <i class="divider"></i>
+          </nav>
+
+            <div class="authentication">
+      <div class="login">
+        <span>Войти</span>
+        <div class="login-popup" style="display: none;">
+          <form id="signin_form" class="ajax-form" action="/users/sign_in" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;">
+              <input class="user_email" autocomplete="off" placeholder="Электронная почта" type="email" name="user[email]">
+              <input autocomplete="off" placeholder="Пароль" type="password" name="user[password]" id="user_password">
+                <p class="recovery-password">Забыли пароль?</p>
+              <div class="error-wrapper user_password" style="font-size: 16px"></div>
+              <input type="submit" name="commit" value="Войти" data-disable-with="Войти">
+</form>        </div>
+        <div class="recovery-popup" style="display: none;">
+          <form id="recovery_form" class="ajax-form" action="/users/recovery_password" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;">
+              <input class="user_email" autocomplete="off" placeholder="Электронная почта" type="email" name="user[email]">
+              <div class="error-wrapper user_email" style="font-size: 16px"></div>
+              <div class="success-wrapper user_email" style="font-size: 16px"></div>
+              <input type="submit" name="commit" value="Отправить пароль" data-disable-with="Отправить пароль">
+</form>        </div>
+        <div class="login-overlay" style="display: none;"></div>
+      </div>
+        <input class="register" name="commit" onclick="yaCounter39902980.reachGoal('registratya'); return false;" value="Зарегистрируйтесь" style="margin-top: -5px" data-disable-with="Зарегистрируйтесь" type="submit">
+    </div>
+
+      </div>
+      <div class="width-1-5 flex-center hidden-large">
+        <a href="/">
+          <div class="logo">
+            <img width="201" alt="Telega" src="/assets/telega-0515180d3af80eac77836d3279caca6f143535c1058d6c9a375277122817af9f.png">
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="register-complete-overlay overlay" style="display: none;"></div>
+  <div class="registration-complete" style="display: none;">
+    <form id="reg_complete_form" class="ajax-form" action="/user/users/name_phone" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;">
+        <h2>Готово</h2>
+        <p>Еще один маленький шаг.<br>Для работы с сервисом укажите<br>свои данные:</p>
+        <input autofocus="autofocus" placeholder="Имя" type="text" name="user[first_name]" id="user_first_name">
+        <div class="error-wrapper user_first_name"></div>
+        <input autofocus="autofocus" placeholder="+7 (495) ХХХ ХХ ХХ" type="text" name="user[phone]" id="user_phone">
+        <div class="error-wrapper user_phone"></div>
+
+        <input type="submit" name="commit" value="Сохранить" data-disable-with="Сохранить">
+</form>  </div>
+</header>
+
+
+    <div class="container body-container">
+      <div class="grid">
+        <div class="width-3-4 push-1-8">
+          
+<div class="dashboard">
+
+
+  <div class="order-filter">
+
+  <div class="filter-row">
+    <div class="filter-item">
+      <label for="channel_theme">Тематика</label>
+      <select id="channel_theme">
+        <option selected="" value="">Тематика</option>
+            <option value="30">Удалёнка и фриланс</option>
+            <option value="3">Бизнес и финансы</option>
+            <option value="6">Недвижимость</option>
+            <option value="7">Медицина и здоровье</option>
+            <option value="8">Интернет, маркетинг</option>
+            <option value="10">Работа</option>
+            <option value="31">Авторские блоги</option>
+            <option value="29">Криптовалюты</option>
+            <option value="27">Кино</option>
+            <option value="17">СМИ</option>
+            <option value="20">Иностранные языки</option>
+            <option value="4">Офис</option>
+            <option value="25">Музыка</option>
+            <option value="24">Мотивация, саморазвитие</option>
+            <option value="23">Кулинария</option>
+            <option value="21">18+</option>
+            <option value="14">Спорт</option>
+            <option value="13">Женский раздел</option>
+            <option value="12">Туризм и путешествия</option>
+            <option value="11">Игры</option>
+            <option value="22">Дизайн и декор</option>
+            <option value="19">Товары и услуги</option>
+            <option value="18">Наука и технологии</option>
+            <option value="26">Каталоги каналов и ботов</option>
+            <option value="28">Популярные</option>
+            <option value="15">Отдых и развлечения</option>
+            <option value="16">Культура, образование, искусство</option>
+            <option value="1">Авто и мото</option>
+      </select>
+    </div>
+
+    <div class="filter-item">
+      <label for="search">Поиск</label>
+      <input id="search" type="text" value="">
+    </div>
+
+
+  </div>
+  <div class="filter-row">
+
+    <div class="filter-item">
+      <label for="user_count">Участников</label>
+      <div class="slider-range" id="user_count">
+        <div id="user_count_start" class="start-value"></div>
+        <div id="user_count_end" class="end-value"></div>
+      </div>
+
+    </div>
+
+    <div class="filter-item">
+      <label for="price">Цена</label>
+      <div class="slider-range" id="price">
+        <div id="price_start" class="start-value"></div>
+        <div id="price_end" class="end-value"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="proposals">
+    <table cellpadding="0" cellspacing="0" class="catalog_channels">
+      <thead>
+      <tr>
+        <th></th>
+        <th><span class='sort-col ' data-field='title' data-dir='asc'>Канал <span class='caret'></span></span></th>
+        <th>Описание</th>
+        <th><span class='sort-col ' data-field='err_percent' data-dir='asc'>ERR <span class='caret'></span></span></th>
+        <th><span class='sort-col ' data-field='user_count' data-dir='asc'>Участников <span class='caret'></span></span></th>
+        <th><span class='sort-col ' data-field='price' data-dir='asc'>Стоимость <span class='caret'></span></span></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody id="channels">
+            <tr id="channels:21083">
+        <td>
+            <a target="_blank" class="channel_avatar_link" href="https://telega.in/tme/reddittgm"><img src="/system/channels/avatars/000/021/083/original/photo_2019-01-02_22-44-28.jpg?1565115917" alt="Photo 2019 01 02 22 44 28"></a>
+        </td>
+        <td>
+          <span class='channel_rating' data-toggle="tooltip" data-placement="top" data-title="Рейтинг канала"><img src="/assets/star-86eb09868474eabbd3dcc7b6486f65f30badeb7e4c2355a9ecf8f1e1373d26c4.svg" alt="Star"> 9.9</span>
+          Reddit - по праву называют главной страницей Мирового интернета, здесь есть всё.
+        </td>
+        <td><p>Самая активная аудитория в телеграме. Отлично подходит для Рекламы образовательных учреждений, курсов, вебинаров и так далее.</p></td>
+        <td class="err">
+          <span data-toggle="tooltip" data-placement="top" data-title="ERR = (Средний охват одного поста / Количество подписчиков) * 100%">26.5%</span><br><span data-toggle="tooltip" data-placement="top" data-title="Среднее к-во просмотров одной публикации"><span class='tilda'>~</span>6.3K <img class="avg_post_reach" src="/assets/eye-show-4d4d25aa201d064e5c2beb065ecadbdd7868ba759ea6cb4695399e1177a2977a.svg" alt="Eye show"></span>
+        </td>
+        <td class="channel-users-count" data-count="23660">> 23 660</td>
+        <td><span class="cost">1 300</span> <span class="b-rub">Р</span></td>
+        <td>
+          <input class="order-checkbox" id="check-21083" value="1" type="checkbox" data-id="21083" autocomplete="off">
+          <label for="check-21083"></label>
+        </td>
+      </tr>
+      <tr id="channels:1413">
+        <td>
+            <a target="_blank" class="channel_avatar_link" href="https://telega.in/tme/babytime11"><img src="/system/channels/avatars/000/001/413/original/photo_2017-05-27_22-48-55.jpg?1501591460" alt="Photo 2017 05 27 22 48 55"></a>
+        </td>
+        <td>
+          <span class='channel_rating' data-toggle="tooltip" data-placement="top" data-title="Рейтинг канала"><img src="/assets/star-86eb09868474eabbd3dcc7b6486f65f30badeb7e4c2355a9ecf8f1e1373d26c4.svg" alt="Star"> 6.1</span>
+          babytime
+        </td>
+        <td><p>Спешим на помощь хорошим родителям, все самое интересное о наших детях.</p></td>
+        <td class="err">
+          <span data-toggle="tooltip" data-placement="top" data-title="ERR = (Средний охват одного поста / Количество подписчиков) * 100%">29.9%</span><br><span data-toggle="tooltip" data-placement="top" data-title="Среднее к-во просмотров одной публикации"><span class='tilda'>~</span>7.1K <img class="avg_post_reach" src="/assets/eye-show-4d4d25aa201d064e5c2beb065ecadbdd7868ba759ea6cb4695399e1177a2977a.svg" alt="Eye show"></span>
+        </td>
+        <td class="channel-users-count" data-count="23860">> 23 860</td>
+        <td><span class="cost">1 820</span> <span class="b-rub">Р</span></td>
+        <td>
+          <input class="order-checkbox" id="check-1413" value="1" type="checkbox" data-id="1413" autocomplete="off">
+          <label for="check-1413"></label>
+        </td>
+      </tr>
+      <tr id="channels:28900">
+        <td>
+            <a target="_blank" class="channel_avatar_link" data-toggle="tooltip" data-placement="top" data-title="Это приватный канал, чтобы проконтролировать размещение необходима подписка" href="https://telega.in/tme/joinchat/AAAAAElYPu2-W6HsUCoXkA"><img src="/system/channels/avatars/000/028/900/original/cache_image.jpg?1584975393" alt="Cache image"><img class="private_channel" src="/assets/lock-a6874a236a53c5128b162926e68d3d65b6b52d645d99acb9331343d829dbc062.svg" alt="Lock"></a>
+        </td>
+        <td>
+          <span class='channel_rating' data-toggle="tooltip" data-placement="top" data-title="Рейтинг канала"><img src="/assets/star-86eb09868474eabbd3dcc7b6486f65f30badeb7e4c2355a9ecf8f1e1373d26c4.svg" alt="Star"> 5.6</span>
+          2D\CH
+        </td>
+        <td><p>Юмор\мемы\аниме</p></td>
+        <td class="err">
+          <span data-toggle="tooltip" data-placement="top" data-title="ERR = (Средний охват одного поста / Количество подписчиков) * 100%">43.5%</span><br><span data-toggle="tooltip" data-placement="top" data-title="Среднее к-во просмотров одной публикации"><span class='tilda'>~</span>9.7K <img class="avg_post_reach" src="/assets/eye-show-4d4d25aa201d064e5c2beb065ecadbdd7868ba759ea6cb4695399e1177a2977a.svg" alt="Eye show"></span>
+        </td>
+        <td class="channel-users-count" data-count="22170">> 22 170</td>
+        <td><span class="cost">845</span> <span class="b-rub">Р</span></td>
+        <td>
+          <input class="order-checkbox" id="check-28900" value="1" type="checkbox" data-id="28900" autocomplete="off">
+          <label for="check-28900"></label>
+        </td>
+      </tr>
+      <tr id="channels:33526">
+        <td>
+            <a target="_blank" class="channel_avatar_link" data-toggle="tooltip" data-placement="top" data-title="Это приватный канал, чтобы проконтролировать размещение необходима подписка" href="https://telega.in/tme/joinchat/AAAAAELyEVAIaKjydOT9uA"><img src="/system/channels/avatars/000/033/526/original/photo2652588965155153839.jpg?1593713968" alt="Photo2652588965155153839"><img class="private_channel" src="/assets/lock-a6874a236a53c5128b162926e68d3d65b6b52d645d99acb9331343d829dbc062.svg" alt="Lock"></a>
+        </td>
+        <td>
+          
+          Жизнь Великих
+        </td>
+        <td><p>Бизнес канал с умной, думающей аудиторией. На закупах. Аудитория свежая. СРМ ниже среднего по рынку. 1-2 рекламы в день!</p></td>
+        <td class="err">
+          <span data-toggle="tooltip" data-placement="top" data-title="ERR = (Средний охват одного поста / Количество подписчиков) * 100%">27.1%</span><br><span data-toggle="tooltip" data-placement="top" data-title="Среднее к-во просмотров одной публикации"><span class='tilda'>~</span>4.8K <img class="avg_post_reach" src="/assets/eye-show-4d4d25aa201d064e5c2beb065ecadbdd7868ba759ea6cb4695399e1177a2977a.svg" alt="Eye show"></span>
+        </td>
+        <td class="channel-users-count" data-count="17720">> 17 720</td>
+        <td><span class="cost">2 040</span> <span class="b-rub">Р</span></td>
+        <td>
+          <input class="order-checkbox" id="check-33526" value="1" type="checkbox" data-id="33526" autocomplete="off">
+          <label for="check-33526"></label>
+        </td>
+      </tr>
+      <tr id="channels:23055">
+        <td>
+            <a target="_blank" class="channel_avatar_link" href="https://telega.in/tme/SergeiEliseevOfficial"><img src="/system/channels/avatars/000/023/055/original/IMG_2212---.jpg?1571162201" alt="Img 2212   "></a>
+        </td>
+        <td>
+          <span class='channel_rating' data-toggle="tooltip" data-placement="top" data-title="Рейтинг канала"><img src="/assets/star-86eb09868474eabbd3dcc7b6486f65f30badeb7e4c2355a9ecf8f1e1373d26c4.svg" alt="Star"> 6.3</span>
+          Сергей Елисеев
+        </td>
+        <td><p>Официальный телеграмм канал ведущего Ютуб-канала (70 тысяч подписчиков) по тематике "Экономика и финансы", "Фондовый рынок", "Рынок ценных бумаг", "Инвестиции".</p></td>
+        <td class="err">
+          <span data-toggle="tooltip" data-placement="top" data-title="ERR = (Средний охват одного поста / Количество подписчиков) * 100%">73.6%</span><br><span data-toggle="tooltip" data-placement="top" data-title="Среднее к-во просмотров одной публикации"><span class='tilda'>~</span>13.9K <img class="avg_post_reach" src="/assets/eye-show-4d4d25aa201d064e5c2beb065ecadbdd7868ba759ea6cb4695399e1177a2977a.svg" alt="Eye show"></span>
+        </td>
+        <td class="channel-users-count" data-count="18900">> 18 900</td>
+        <td><span class="cost">12 000</span> <span class="b-rub">Р</span></td>
+        <td>
+          <input class="order-checkbox" id="check-23055" value="1" type="checkbox" data-id="23055" autocomplete="off">
+          <label for="check-23055"></label>
+        </td>
+      </tr>
+      <tr id="channels:29890">
+        <td>
+            <a target="_blank" class="channel_avatar_link" data-toggle="tooltip" data-placement="top" data-title="Это приватный канал, чтобы проконтролировать размещение необходима подписка" href="https://telega.in/tme/joinchat/AAAAAE9NmH90nfKP60dHXA"><img src="/system/channels/avatars/000/029/890/original/%D0%BF%D1%8B%D0%B2%D1%80%D0%BC%D0%B8%D1%81%D0%BC_%281%29.jpg?1587474222" alt="%d0%bf%d1%8b%d0%b2%d1%80%d0%bc%d0%b8%d1%81%d0%bc %281%29"><img class="private_channel" src="/assets/lock-a6874a236a53c5128b162926e68d3d65b6b52d645d99acb9331343d829dbc062.svg" alt="Lock"></a>
+        </td>
+        <td>
+          <span class='channel_rating' data-toggle="tooltip" data-placement="top" data-title="Рейтинг канала"><img src="/assets/star-86eb09868474eabbd3dcc7b6486f65f30badeb7e4c2355a9ecf8f1e1373d26c4.svg" alt="Star"> 6.1</span>
+          Pro кино - Фильмы онлайн
+        </td>
+        <td><p>Активная отзывчивая аудитория.
+<br>Заказывай и не пожалеешь.🔥🔥🔥
+<br>Постоянно в закупе рекламы. Канал быстро ростет.</p></td>
+        <td class="err">
+          <span data-toggle="tooltip" data-placement="top" data-title="ERR = (Средний охват одного поста / Количество подписчиков) * 100%">26.2%</span><br><span data-toggle="tooltip" data-placement="top" data-title="Среднее к-во просмотров одной публикации"><span class='tilda'>~</span>24.9K <img class="avg_post_reach" src="/assets/eye-show-4d4d25aa201d064e5c2beb065ecadbdd7868ba759ea6cb4695399e1177a2977a.svg" alt="Eye show"></span>
+        </td>
+        <td class="channel-users-count" data-count="95140">> 95 140</td>
+        <td><span class="cost">1 560</span> <span class="b-rub">Р</span></td>
+        <td>
+          <input class="order-checkbox" id="check-29890" value="1" type="checkbox" data-id="29890" autocomplete="off">
+          <label for="check-29890"></label>
+        </td>
+      </tr>
+      <tr id="channels:34533">
+        <td>
+            <a target="_blank" class="channel_avatar_link" data-toggle="tooltip" data-placement="top" data-title="Это приватный канал, чтобы проконтролировать размещение необходима подписка" href="https://telega.in/tme/joinchat/AAAAAE9JKyUOaGPAadB5gA"><img src="/system/channels/avatars/000/034/533/original/photo_2020-07-28_13.38.07.jpeg?1596398599" alt="Photo 2020 07 28 13.38.07"><img class="private_channel" src="/assets/lock-a6874a236a53c5128b162926e68d3d65b6b52d645d99acb9331343d829dbc062.svg" alt="Lock"></a>
+        </td>
+        <td>
+          
+          Тайный Манипулятор
+        </td>
+        <td><p>Размещение 4/24 и 4/48.
+<br>Канал поднимался только прямыми постами.
+<br>Не рекламируем треш, казино и т.д.</p></td>
+        <td class="err">
+          
+        </td>
+        <td class="channel-users-count" data-count="15153">> 15 153</td>
+        <td><span class="cost">650</span> <span class="b-rub">Р</span></td>
+        <td>
+          <input class="order-checkbox" id="check-34533" value="1" type="checkbox" data-id="34533" autocomplete="off">
+          <label for="check-34533"></label>
+        </td>
+      </tr>
+      <tr id="channels:34532">
+        <td>
+            <a target="_blank" class="channel_avatar_link" href="https://telega.in/tme/sickySic"><img src="/system/channels/avatars/000/034/532/original/AmlHg57eAtA.jpg?1596398481" alt="Amlhg57eata"></a>
+        </td>
+        <td>
+          
+          Sic(!)k
+        </td>
+        <td><p>Канал на закупе рекламы. Авторский перевод шуток, не копипаста. Без ботов, есть паблик вк.</p></td>
+        <td class="err">
+          <span data-toggle="tooltip" data-placement="top" data-title="ERR = (Средний охват одного поста / Количество подписчиков) * 100%">67.4%</span><br><span data-toggle="tooltip" data-placement="top" data-title="Среднее к-во просмотров одной публикации"><span class='tilda'>~</span>327 <img class="avg_post_reach" src="/assets/eye-show-4d4d25aa201d064e5c2beb065ecadbdd7868ba759ea6cb4695399e1177a2977a.svg" alt="Eye show"></span>
+        </td>
+        <td class="channel-users-count" data-count="480">> 480</td>
+        <td><span class="cost">241</span> <span class="b-rub">Р</span></td>
+        <td>
+          <input class="order-checkbox" id="check-34532" value="1" type="checkbox" data-id="34532" autocomplete="off">
+          <label for="check-34532"></label>
+        </td>
+      </tr>
+      <tr id="channels:34526">
+        <td>
+            <a target="_blank" class="channel_avatar_link" href="https://telega.in/tme/verymutniy"><img src="/system/channels/avatars/000/034/526/original/cache_image.jpeg?1596386057" alt="Cache image"></a>
+        </td>
+        <td>
+          
+          Мутный пассажир
+        </td>
+        <td><p>1. Онлайн заработок 
+<br>2. Обзор на бизнес кейсы 
+<br>3. Полезные статьи о заработке в интернете</p></td>
+        <td class="err">
+          <span data-toggle="tooltip" data-placement="top" data-title="ERR = (Средний охват одного поста / Количество подписчиков) * 100%">0.0%</span><br><span data-toggle="tooltip" data-placement="top" data-title="Среднее к-во просмотров одной публикации"><span class='tilda'>~</span>283 <img class="avg_post_reach" src="/assets/eye-show-4d4d25aa201d064e5c2beb065ecadbdd7868ba759ea6cb4695399e1177a2977a.svg" alt="Eye show"></span>
+        </td>
+        <td class="channel-users-count" data-count="870">> 870</td>
+        <td><span class="cost">1 300</span> <span class="b-rub">Р</span></td>
+        <td>
+          <input class="order-checkbox" id="check-34526" value="1" type="checkbox" data-id="34526" autocomplete="off">
+          <label for="check-34526"></label>
+        </td>
+      </tr>
+      <tr id="channels:34523">
+        <td>
+            <a target="_blank" class="channel_avatar_link" data-toggle="tooltip" data-placement="top" data-title="Это приватный канал, чтобы проконтролировать размещение необходима подписка" href="https://telega.in/tme/joinchat/AAAAAEEsKSpv-GEeM5H3oQ"><img src="/system/channels/avatars/000/034/523/original/photo_2020-04-29_11-19-48.jpg?1596374776" alt="Photo 2020 04 29 11 19 48"><img class="private_channel" src="/assets/lock-a6874a236a53c5128b162926e68d3d65b6b52d645d99acb9331343d829dbc062.svg" alt="Lock"></a>
+        </td>
+        <td>
+          
+          Женский юмор
+        </td>
+        <td><p>Канал с активной взрослой женской аудиторией</p></td>
+        <td class="err">
+          <span data-toggle="tooltip" data-placement="top" data-title="ERR = (Средний охват одного поста / Количество подписчиков) * 100%">69.7%</span><br><span data-toggle="tooltip" data-placement="top" data-title="Среднее к-во просмотров одной публикации"><span class='tilda'>~</span>7.3K <img class="avg_post_reach" src="/assets/eye-show-4d4d25aa201d064e5c2beb065ecadbdd7868ba759ea6cb4695399e1177a2977a.svg" alt="Eye show"></span>
+        </td>
+        <td class="channel-users-count" data-count="10440">> 10 440</td>
+        <td><span class="cost">1 690</span> <span class="b-rub">Р</span></td>
+        <td>
+          <input class="order-checkbox" id="check-34523" value="1" type="checkbox" data-id="34523" autocomplete="off">
+          <label for="check-34523"></label>
+        </td>
+      </tr>
+
+      </tbody>
+      <tfoot>
+      <tr>
+        <td colspan="4">Итого:</td>
+        <td id="total_users"><span class="users_count">0</span></td>
+        <td class="total"><span class="cost">0</span> <span class="b-rub">Р</span></td>
+      </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <a href="javascript:void(0)" class="more" data-wrapper=".proposals tbody" data-theme="" data-sort="" data-url="/orders/new.json">
+    Еще каналы
+  </a>
+  <span class="more-loader"></span>
+  <input type="hidden" id="selected_channels" autocomplete="off">
+  <input type="hidden" id="new_order_url" value="/orders/create" autocomplete="off">
+
+  <form class="new_order" id="new_order" action="/orders/create" accept-charset="UTF-8" method="get">
+
+
+      <button type="button" class="submit_order" onclick="yaCounter39902980.reachGoal('ORDER'); return true;">Заказать</button>
+</form></div>
+
+        </div>
+      </div>
+    </div>
+    <div class="bottom-decor"> </div>
+  </div>
+  <footer>
+  <div class="container">
+      <div class="grid width-3-4 push-1-8 locale-ru">
+        <div class="flex-center">
+          <div class="mira">Проект холдинга <a href="http://mirafox.com">Мирафокс</a></div>
+        </div>
+        <div class="faq flex-center">
+          <a href="/faq">FAQ</a>
+        </div>
+        <div class="faq flex-center">
+          <a href="/oferta">Оферта</a>
+        </div>
+        <div class="faq flex-center">
+          <a href="/rules">Правила</a>
+        </div>
+        <div class="faq flex-center hide-sm">
+          <a data-turbolinks="false" href="/crypt">Crypt</a>
+        </div>
+        <div class="faq flex-center hide-sm">
+          <a href="new.html"><a data-turbolinks="false" href="/package">Пакетное размещение</a>
+        </div>
+        <div class="faq flex-center hide-sm">
+          <a href="new.html"><a data-turbolinks="false" href="/bookmakers">Букмекерам</a>
+        </div>
+        <div class="flex-center">
+          2020, TeleGa
+        </div>
+      </div>
+  </div>
+</footer>
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript" async="">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(39902980, "init", {
+      clickmap:true,
+      trackLinks:true,
+      accurateTrackBounce:true,
+      webvisor:true
+    });
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/39902980" style="position:absolute; left:-9999px;" alt=""></div></noscript>
+  <!-- /Yandex.Metrika counter -->
+<script async="">
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-87599652-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-135362804-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-135362804-1');
+  </script>
+
+
+
+
+</div>
+<script type="text/javascript">(window.Image ? (new Image()) : document.createElement('img')).src = location.protocol + '//vk.com/rtrg?r=CRSXmSx7GCRdA82wEUi01dI4LxmeL8*XkPybkkWU6lBlWm7Bum*hPvRwGeI/cWdRCljia*dOW0hs3xm0L//EWLjlv8I2/4ZCHZ6OO1/5SnkSFZZa18QEBDImF3m1IG*WFdGMLDdZKwmbIwrth*K88rz8IEn/bSDDpGLqKW7J/fc-&pixel_id=1000035169';</script>
+</body>
+</html>
